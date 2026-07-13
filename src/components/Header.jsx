@@ -12,6 +12,8 @@ function Header({ setSearchitem }) {
   const navigate = useNavigate();
   const searchButtonRef = useRef(null);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const wishlist = useSelector((state) => state.wishlist.wishlistItems);
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur">
@@ -55,14 +57,22 @@ function Header({ setSearchitem }) {
 
           {/* Right Section */}
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon-lg"
-              className="rounded-full"
-              onClick={() => navigate("/wishlist")}
-            >
-              <Heart size={20} />
-            </Button>
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon-lg"
+                className="rounded-full"
+                onClick={() => navigate("/wishlist")}
+              >
+                <Heart size={20} />
+              </Button>
+
+              {wishlist.length > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-semibold text-white">
+                  {wishlist.length}
+                </span>
+              )}
+            </div>
 
             <div className="relative">
               <Button
