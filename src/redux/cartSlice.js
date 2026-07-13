@@ -13,7 +13,6 @@ export const cartSlice = createSlice({
       const existingItem = state.cartItems.find((item) => item.id === id);
       if (existingItem) existingItem.quantity += 1;
       else state.cartItems.push({ ...action.payload, quantity: 1 });
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     removeFromCart: (state, action) => {
       const id = action.payload;
@@ -24,7 +23,6 @@ export const cartSlice = createSlice({
       const existingItem = state.cartItems.find((item) => item.id === id);
       if (existingItem.stock <= existingItem.quantity) alert("Not in stock");
       else existingItem.quantity++;
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
     decreaseQuantity: (state, action) => {
       const id = action.payload;
@@ -32,7 +30,6 @@ export const cartSlice = createSlice({
       if (existingItem.quantity <= 1)
         state.cartItems = state.cartItems.filter((item) => item.id !== id);
       else existingItem.quantity--;
-      localStorage.setItem("cart", JSON.stringify(state.cartItems));
     },
   },
 });

@@ -13,14 +13,12 @@ export const wishlistSlice = createSlice({
   reducers: {
     addToWishlist: (state, action) => {
       state.wishlistItems.push(action.payload);
-      localStorage.setItem("wishlist", JSON.stringify(state.wishlistItems));
     },
     removeFromwishlist: (state, action) => {
       const id = action.payload;
       state.wishlistItems = state.wishlistItems.filter(
         (item) => item.id !== id,
       );
-      localStorage.setItem("wishlist", JSON.stringify(state.wishlistItems));
     },
   },
 });
