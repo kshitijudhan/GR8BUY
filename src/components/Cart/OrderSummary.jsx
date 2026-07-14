@@ -15,7 +15,7 @@ function OrderSummary() {
     cartItems.forEach((item) => {
       const price = item?.price || 1;
       const discountPercentage = item?.discountPercentage || 0;
-      const convertedPrice = price * exchangeRate;
+      const convertedPrice = price * exchangeRate * item.quantity;
       const discountedPrice = convertedPrice * (1 - discountPercentage / 100);
 
       total += discountedPrice;

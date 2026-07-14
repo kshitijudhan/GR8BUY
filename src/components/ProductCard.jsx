@@ -97,7 +97,7 @@ export default function ProductCard({ product }) {
 
       <CardFooter className="flex gap-3">
         {cartItems.find((item) => item.id === product.id) ? (
-          <Link to={"cart"} className="flex-1">
+          <Link to="/cart" className="flex-1">
             <Button className="w-full">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Go to Cart
