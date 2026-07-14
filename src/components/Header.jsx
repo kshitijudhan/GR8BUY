@@ -47,7 +47,7 @@ function Header({ setSearchitem }) {
               <HashLink smooth to="/#products">
                 <Button
                   ref={searchButtonRef}
-                  onClick={() => setSearchitem(searchtext.trim().toLowerCase())}
+                  onClick={() => setSearchitem(searchtext)}
                 >
                   Search
                 </Button>

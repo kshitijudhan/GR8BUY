@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Banner from "@/components/Banner";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ProductGrid";
 import Categories from "@/components/Categories";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -12,6 +13,7 @@ function Home() {
   const [selectedcategories, setSelectedcategories] = useState("");
   const [isloading, setIsLoading] = useState(true);
   const [iserror, setIsError] = useState(false);
+  const cart = useSelector((state) => state.cart.cartItems);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=0")
@@ -31,15 +33,31 @@ function Home() {
       });
   }, []);
 
-  const categorizedProducts =
-    selectedcategories === ""
-      ? products
-      : products.filter((product) => product.category === selectedcategories);
+  const visibleProducts = useMemo(() => {
+    if (!products.length) return [];
 
-  const visibleProducts = categorizedProducts.filter(
-    (product) =>
-      searchitem === "" || product.title.toLowerCase().includes(searchitem),
-  );
+    const cartMap = new Map(cart.map((item) => [item.id, item.quantity]));
+
+    const searchLower = searchitem.trim().toLowerCase();
+
+    return products
+      .filter(
+        (product) =>
+          selectedcategories === "" || product.category === selectedcategories,
+      )
+      .filter(
+        (product) =>
+          searchitem === "" ||
+          product.title.toLowerCase().includes(searchLower),
+      )
+      .map((product) => {
+        const cartQuantity = cartMap.get(product.id) || 0;
+        return {
+          ...product,
+          stock: Math.max(0, product.stock - cartQuantity),
+        };
+      });
+  }, [products, cart, selectedcategories, searchitem]);
 
   return (
     <div>

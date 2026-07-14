@@ -7,10 +7,15 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductDetailSkeleton from "./ProductDetailSkeleton";
 import useCurrencyinr from "@/hooks/useCurrencyinr";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/cartSlice";
+import { toast } from "sonner";
 
 export default function ProductDetails({ product }) {
   const [isloading, setIsloading] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+
   const [selectedImage, setSelectedImage] = useState(
     product.images?.[0] || product.thumbnail,
   );
@@ -137,7 +142,18 @@ export default function ProductDetails({ product }) {
 
           {/* Buttons */}
           <div className="flex gap-4">
-            <Button className="flex-1">
+            <Button
+              className="flex-1"
+              onClick={() => {
+                if (product.stock <= quantity) {
+                  toast.info("Item is out of stock", {
+                    position: "top-center",
+                  });
+                } else {
+                  dispatch(addToCart({ ...product, quantity }));
+                }
+              }}
+            >
               <ShoppingCart className="mr-2 h-4 w-4" />
               Add To Cart
             </Button>
