@@ -1,38 +1,31 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCurrencies } from "@/redux/currencySlice";
+import { useSelector } from "react-redux";
 
 function OrderSummary() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const currencyrate = useSelector((state) => state.currency.rates);
-  const currencyState = useSelector((state) => state.currency.status);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (currencyState === "idle") dispatch(fetchCurrencies());
-  }, [currencyState, dispatch]);
+  const exchangeRate = useSelector((state) => state.currency.rates?.inr || 1);
 
   const { totalSum, discountSum } = useMemo(() => {
     let total = 0;
     let discount = 0;
 
-    const rate = currencyrate.inr || 1;
-
     cartItems.forEach((item) => {
-      const convertedPrice = item.price * rate * item.quantity;
-      const discountPrice =
-        convertedPrice * (1 - item.discountPercentage / 100);
-      total += discountPrice;
-      discount += convertedPrice - discountPrice;
+      const price = item?.price || 1;
+      const discountPercentage = item?.discountPercentage || 0;
+      const convertedPrice = price * exchangeRate;
+      const discountedPrice = convertedPrice * (1 - discountPercentage / 100);
+
+      total += discountedPrice;
+      discount += convertedPrice - discountedPrice;
     });
     return {
       totalSum: total.toFixed(2),
       discountSum: discount.toFixed(2),
     };
-  }, [cartItems, currencyrate.inr]);
+  }, [cartItems, exchangeRate]);
 
   return (
     <Card className="h-fit lg:sticky lg:top-24">

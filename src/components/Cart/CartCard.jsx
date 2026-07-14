@@ -1,31 +1,19 @@
-import { useEffect } from "react";
 import { Trash2, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCurrencies } from "@/redux/currencySlice";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import {
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
 } from "@/redux/cartSlice";
+import useCurrencyinr from "@/hooks/useCurrencyinr";
 
 function CartCard({ item }) {
-  const currencyrate = useSelector((state) => state.currency.rates);
-  const currencyState = useSelector((state) => state.currency.status);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (currencyState === "idle") dispatch(fetchCurrencies());
-  }, [currencyState, dispatch]);
-
-  const convertedPrice = (item.price * currencyrate?.inr).toFixed(2);
-
-  const discountedPrice = (
-    convertedPrice *
-    (1 - item.discountPercentage / 100)
-  ).toFixed(2);
+  const { convertedPrice, discountedPrice } = useCurrencyinr(item);
 
   return (
     <div className="space-y-5">

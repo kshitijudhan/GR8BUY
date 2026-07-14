@@ -5,37 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { addToCart } from "@/redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchCurrencies } from "../redux/currencySlice";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import { addToWishlist, removeFromwishlist } from "@/redux/wishlistSlice";
+import useCurrencyinr from "@/hooks/useCurrencyinr";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
-  const currencyrate = useSelector((state) => state.currency.rates);
-  const currencyStatus = useSelector((state) => state.currency.status);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const wishlist = useSelector((state) => state.wishlist.wishlistItems) ?? [];
   const isInWishlist = wishlist.some((item) => item.id === product.id);
+  const { convertedPrice, discountedPrice, currencyStatus } =
+    useCurrencyinr(product);
 
-  useEffect(() => {
-    if (currencyStatus === "idle") dispatch(fetchCurrencies());
-  }, [dispatch, currencyStatus]);
-
-  if (
-    currencyStatus === "loading" ||
-    currencyStatus === "pending" ||
-    !currencyrate.inr
-  ) {
+  if (currencyStatus === "loading" || currencyStatus === "pending") {
     return <ProductCardSkeleton />;
   }
-
-  const convertedPrice = (product.price * currencyrate.inr).toFixed(2);
-
-  const discountedPrice = (
-    convertedPrice *
-    (1 - product.discountPercentage / 100)
-  ).toFixed(2);
 
   return (
     <Card className="group overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">

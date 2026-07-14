@@ -5,9 +5,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useDispatch } from "react-redux";
 import { removeFromwishlist } from "@/redux/wishlistSlice";
 import { addToCart } from "@/redux/cartSlice";
+import useCurrencyinr from "@/hooks/useCurrencyinr";
 
 function WishlistCard({ item }) {
   const dispatch = useDispatch();
+  const { convertedPrice, discountedPrice } = useCurrencyinr(item);
   return (
     <Card className="overflow-hidden">
       <div className="flex aspect-square items-center justify-center bg-muted p-6">
@@ -28,7 +30,13 @@ function WishlistCard({ item }) {
           <span>{item.rating}</span>
         </div>
 
-        <p className="text-2xl font-bold">₹4,299</p>
+        <div className="flex items-center gap-3">
+          <span className="text-2xl font-bold">₹{discountedPrice}</span>
+
+          <span className="text-muted-foreground line-through">
+            ₹{convertedPrice}
+          </span>
+        </div>
       </CardContent>
 
       <CardFooter className="flex flex-col gap-3">
@@ -36,6 +44,7 @@ function WishlistCard({ item }) {
           className="w-full"
           onClick={() => {
             dispatch(addToCart(item));
+            dispatch(removeFromwishlist(item.id));
           }}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />

@@ -5,19 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrencies } from "../redux/currencySlice";
 import ProductDetailSkeleton from "./ProductDetailSkeleton";
+import useCurrencyinr from "@/hooks/useCurrencyinr";
 
 export default function ProductDetails({ product }) {
-  const currencyrate = useSelector((state) => state.currency.rates);
-  const currencyState = useSelector((state) => state.currency.status);
-  const dispatch = useDispatch();
   const [isloading, setIsloading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(
     product.images?.[0] || product.thumbnail,
   );
+  const { convertedPrice, discountedPrice, currencyStatus } =
+    useCurrencyinr(product);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -28,23 +26,9 @@ export default function ProductDetails({ product }) {
     setIsloading(false);
   }, [product]);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsloading(true);
-    if (currencyState === "idle") dispatch(fetchCurrencies());
-    setIsloading(false);
-  }, [currencyState, dispatch]);
-
-  if (isloading || currencyState === "idle" || currencyState === "pending") {
+  if (isloading || currencyStatus === "idle" || currencyStatus === "pending") {
     return <ProductDetailSkeleton />;
   }
-
-  const convertedPrice = (product.price * currencyrate?.inr).toFixed(2);
-
-  const discountedPrice = (
-    convertedPrice *
-    (1 - product.discountPercentage / 100)
-  ).toFixed(2);
 
   return (
     <section className="container mx-auto max-w-7xl px-6 py-10">
