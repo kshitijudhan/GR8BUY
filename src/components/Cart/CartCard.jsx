@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCurrencies } from "@/redux/currencySlice";
+import { toast } from "sonner";
 import {
   increaseQuantity,
   decreaseQuantity,
@@ -72,7 +73,11 @@ function CartCard({ item }) {
                   variant="ghost"
                   size="icon"
                   onClick={() => {
-                    dispatch(increaseQuantity(item.id));
+                    if (item.stock <= item.quantity) {
+                      toast.info("Item is out of stock", {
+                        position: "top-center",
+                      });
+                    } else dispatch(increaseQuantity(item.id));
                   }}
                 >
                   <Plus size={16} />

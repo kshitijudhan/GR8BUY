@@ -21,8 +21,7 @@ export const cartSlice = createSlice({
     increaseQuantity: (state, action) => {
       const id = action.payload;
       const existingItem = state.cartItems.find((item) => item.id === id);
-      if (existingItem.stock <= existingItem.quantity) alert("Not in stock");
-      else existingItem.quantity++;
+      existingItem.quantity++;
     },
     decreaseQuantity: (state, action) => {
       const id = action.payload;
