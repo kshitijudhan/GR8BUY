@@ -1,12 +1,22 @@
-import { Link } from "react-router-dom";
-
+import { Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showpassword, setShowpassword] = useState(false);
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordRegex =
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,20}$/;
+  const navigate = useNavigate();
+
   return (
     <section className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-12">
       <Card className="w-full max-w-md">
@@ -26,18 +36,42 @@ export default function Login() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
 
-              <Input id="email" type="email" placeholder="Enter your email" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </div>
 
             {/* Password */}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
 
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showpassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowpassword(!showpassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                >
+                  {showpassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Remember Me */}
@@ -59,24 +93,21 @@ export default function Login() {
             </div>
 
             {/* Login Button */}
-            <Button className="w-full">Login</Button>
-
-            {/* Divider */}
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  OR
-                </span>
-              </div>
-            </div>
-
-            {/* Google Login */}
-            <Button variant="outline" className="w-full">
-              Continue with Google
+            <Button
+              type="button"
+              className="w-full"
+              onClick={() => {
+                if (emailRegex.test(email) && passwordRegex.test(password)) {
+                  toast.success("Login Successful", { position: "top-center" });
+                  navigate("/");
+                } else {
+                  toast.warning("Invalid Email or Password try again", {
+                    position: "top-center",
+                  });
+                }
+              }}
+            >
+              Login
             </Button>
 
             {/* Signup */}
