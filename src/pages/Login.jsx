@@ -104,7 +104,7 @@ export default function Login() {
                   });
                 } else if (!passwordRegex.test(password)) {
                   toast.error(
-                    "Password must contain atleast one uppercase letter, one lowercase letter and one special character",
+                    "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character",
                     {
                       position: "top-center",
                     },
