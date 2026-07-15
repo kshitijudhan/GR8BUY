@@ -61,7 +61,7 @@ function CartCard({ item }) {
                   variant="ghost"
                   size="icon"
                   onClick={() => {
-                    if (item.stock <= item.quantity) {
+                    if (item.stock <= 0) {
                       toast.info("Item is out of stock", {
                         position: "top-center",
                       });

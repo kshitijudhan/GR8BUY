@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import { addToWishlist, removeFromwishlist } from "@/redux/wishlistSlice";
 import useCurrencyinr from "@/hooks/useCurrencyinr";
+import { toast } from "sonner";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -107,7 +108,11 @@ export default function ProductCard({ product }) {
           <Button
             className="flex-1"
             onClick={() => {
-              dispatch(addToCart(product));
+              if (product.stock <= 0) {
+                toast.info("Item is out of stock", {
+                  position: "top-center",
+                });
+              } else dispatch(addToCart(product));
             }}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
