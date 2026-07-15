@@ -6,6 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 import Categories from "@/components/Categories";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import { useSelector } from "react-redux";
+import WhatWeSell from "@/components/WhatWeSell";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -64,6 +65,7 @@ function Home() {
       <Header setSearchitem={setSearchitem} />
       <Categories setSelectedcategories={setSelectedcategories} />
       <Banner />
+      <WhatWeSell />
       <main style={{ marginTop: "10px", padding: "10px" }}>
         {iserror ? (
           <div>There is something wrong try again</div>
