@@ -96,14 +96,22 @@ export default function Login() {
             <Button
               type="button"
               className="w-full"
+              disabled={!email || !password}
               onClick={() => {
-                if (emailRegex.test(email) && passwordRegex.test(password)) {
-                  toast.success("Login Successful", { position: "top-center" });
-                  navigate("/");
-                } else {
-                  toast.warning("Invalid Email or Password try again", {
+                if (!emailRegex.test(email)) {
+                  toast.error("Please enter a valid email", {
                     position: "top-center",
                   });
+                } else if (!passwordRegex.test(password)) {
+                  toast.error(
+                    "Password must contain atleast one uppercase letter, one lowercase letter and one special character",
+                    {
+                      position: "top-center",
+                    },
+                  );
+                } else {
+                  toast.success("Login Successful", { position: "top-center" });
+                  navigate("/");
                 }
               }}
             >
