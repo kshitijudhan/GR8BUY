@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart, User, Heart } from "lucide-react";
+import { ShoppingCart, User, Heart, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { HashLink } from "react-router-hash-link";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "sonner";
 
 function Header({ setSearchitem }) {
   const [searchtext, setSearchtext] = useState("");
@@ -101,6 +102,17 @@ function Header({ setSearchitem }) {
               onClick={() => navigate("/login")}
             >
               <User size={30} />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon-lg"
+              className="rounded-full"
+              onClick={() =>
+                toast.info("No notifications", { position: "top-center" })
+              }
+            >
+              <Bell size={30} />
             </Button>
           </div>
         </div>
