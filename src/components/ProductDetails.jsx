@@ -106,7 +106,9 @@ export default function ProductDetails({ product }) {
 
           {/* Availability */}
           <div className="flex items-center gap-3">
-            <Badge>{product.availabilityStatus}</Badge>
+            <Badge variant={availableStock > 0 ? "default" : "destructive"}>
+              {availableStock > 0 ? "In Stock" : "Out of Stock"}
+            </Badge>
 
             <span className="text-muted-foreground">
               {availableStock} items available
