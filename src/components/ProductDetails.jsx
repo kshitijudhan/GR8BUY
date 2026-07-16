@@ -7,20 +7,22 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductDetailSkeleton from "./ProductDetailSkeleton";
 import useCurrencyinr from "@/hooks/useCurrencyinr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/cartSlice";
 import { toast } from "sonner";
+import { getAvailableStock } from "./utilities/availableStock";
 
 export default function ProductDetails({ product }) {
   const [isloading, setIsloading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-
   const [selectedImage, setSelectedImage] = useState(
     product.images?.[0] || product.thumbnail,
   );
   const { convertedPrice, discountedPrice, currencyStatus } =
     useCurrencyinr(product);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const availableStock = getAvailableStock(product, cartItems);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -107,7 +109,7 @@ export default function ProductDetails({ product }) {
             <Badge>{product.availabilityStatus}</Badge>
 
             <span className="text-muted-foreground">
-              {product.stock} items available
+              {availableStock} items available
             </span>
           </div>
 
@@ -132,7 +134,11 @@ export default function ProductDetails({ product }) {
                 variant="ghost"
                 size="icon"
                 onClick={() =>
-                  quantity < product.stock && setQuantity(quantity + 1)
+                  quantity < availableStock
+                    ? setQuantity(quantity + 1)
+                    : toast.info("Item is out of stock", {
+                        position: "top-center",
+                      })
                 }
               >
                 <Plus size={16} />
@@ -145,7 +151,7 @@ export default function ProductDetails({ product }) {
             <Button
               className="flex-1"
               onClick={() => {
-                if (product.stock <= quantity) {
+                if (availableStock < quantity) {
                   toast.info("Item is out of stock", {
                     position: "top-center",
                   });

@@ -9,6 +9,7 @@ import ProductCardSkeleton from "./ProductCardSkeleton";
 import { addToWishlist, removeFromwishlist } from "@/redux/wishlistSlice";
 import useCurrencyinr from "@/hooks/useCurrencyinr";
 import { toast } from "sonner";
+import { getAvailableStock } from "./utilities/availableStock";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ export default function ProductCard({ product }) {
   if (currencyStatus === "loading" || currencyStatus === "pending") {
     return <ProductCardSkeleton />;
   }
+  const availableStock = getAvailableStock(product, cartItems);
 
   return (
     <Card className="group overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -91,8 +93,8 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Stock */}
-        <Badge variant={product.stock > 0 ? "default" : "destructive"}>
-          {product.availabilityStatus}
+        <Badge variant={availableStock > 0 ? "default" : "destructive"}>
+          {availableStock > 0 ? "In Stock" : "Out of Stock"}
         </Badge>
       </CardContent>
 
@@ -108,7 +110,7 @@ export default function ProductCard({ product }) {
           <Button
             className="flex-1"
             onClick={() => {
-              if (product.stock <= 0) {
+              if (availableStock <= 0) {
                 toast.info("Item is out of stock", {
                   position: "top-center",
                 });
