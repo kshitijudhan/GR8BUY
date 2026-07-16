@@ -8,6 +8,7 @@ import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import { useSelector } from "react-redux";
 import WhatWeSell from "@/components/WhatWeSell";
 import { PaginationIndex } from "@/components/PaginationIndex";
+import ProductNotFound from "@/components/ProductNotFound";
 
 const PRODUCTS_PER_PAGE = 16;
 
@@ -88,6 +89,11 @@ function Home() {
           <div>There is something wrong try again</div>
         ) : isloading ? (
           <ProductGridSkeleton />
+        ) : visibleProducts.length <= 0 ? (
+          <ProductNotFound
+            setSearchitem={setSearchitem}
+            setSelectedcategories={setSelectedcategories}
+          />
         ) : (
           <>
             <ProductGrid visibleProducts={visibleProducts} />
