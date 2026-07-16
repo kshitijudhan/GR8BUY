@@ -13,7 +13,7 @@ function ProductGridSkeleton() {
         <Skeleton className="h-4 w-1/2" />
       </section>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {Array.from({ length: 12 }).map((_, index) => (
+        {Array.from({ length: 16 }).map((_, index) => (
           <ProductCardSkeleton key={index} />
         ))}
       </div>

@@ -7,6 +7,9 @@ import Categories from "@/components/Categories";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 import { useSelector } from "react-redux";
 import WhatWeSell from "@/components/WhatWeSell";
+import { PaginationIndex } from "@/components/PaginationIndex";
+
+const PRODUCTS_PER_PAGE = 16;
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -15,6 +18,9 @@ function Home() {
   const [isloading, setIsLoading] = useState(true);
   const [iserror, setIsError] = useState(false);
   const cart = useSelector((state) => state.cart.cartItems);
+  const [currentPage, setCurrentPage] = useState(1);
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
 
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=0")
@@ -34,11 +40,10 @@ function Home() {
       });
   }, []);
 
-  const visibleProducts = useMemo(() => {
+  const filteredProducts = useMemo(() => {
     if (!products.length) return [];
 
     const cartMap = new Map(cart.map((item) => [item.id, item.quantity]));
-
     const searchLower = searchitem.trim().toLowerCase();
 
     return products
@@ -60,6 +65,18 @@ function Home() {
       });
   }, [products, cart, selectedcategories, searchitem]);
 
+  const visibleProducts = useMemo(
+    () => filteredProducts.slice(startIndex, endIndex),
+    [filteredProducts, startIndex, endIndex],
+  );
+
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCurrentPage(1);
+  }, [searchitem, selectedcategories]);
+
   return (
     <div>
       <Header setSearchitem={setSearchitem} />
@@ -72,7 +89,16 @@ function Home() {
         ) : isloading ? (
           <ProductGridSkeleton />
         ) : (
-          <ProductGrid visibleProducts={visibleProducts} />
+          <>
+            <ProductGrid visibleProducts={visibleProducts} />
+            {totalPages > 1 && (
+              <PaginationIndex
+                totalPages={totalPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
+          </>
         )}
       </main>
       <Footer />
