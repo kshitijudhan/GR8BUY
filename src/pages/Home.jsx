@@ -82,7 +82,7 @@ function Home() {
     <div>
       <Header setSearchitem={setSearchitem} />
       <Categories setSelectedcategories={setSelectedcategories} />
-      <Banner />
+      <Banner products={filteredProducts} />
       <WhatWeSell />
       <main style={{ marginTop: "10px", padding: "10px" }}>
         {iserror ? (
