@@ -1,16 +1,183 @@
-# React + Vite
+# 🛍️ GR8BUY
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GR8BUY is a modern e-commerce web application built with **React**, **Redux Toolkit**, **Vite**, **Tailwind CSS**, and **shadcn/ui**. It provides a clean shopping experience with product browsing, search, category filtering, wishlist management, shopping cart functionality, pagination, currency conversion, and responsive design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
+```
+(https://gr8-buy.vercel.app/)
+```
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📸 Screenshots
 
-## Expanding the ESLint configuration
+| Home                            | Product Details                       |
+| ------------------------------- | ------------------------------------- |
+| ![Home](./screenshots/home.png) | ![Product](./screenshots/product.png) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Cart                            | Wishlist                                |
+| ------------------------------- | --------------------------------------- |
+| ![Cart](./screenshots/cart.png) | ![Wishlist](./screenshots/wishlist.png) |
+
+---
+
+# ✨ Features
+
+### 🛒 Shopping
+
+* Browse all products
+* Product detail page
+* Dynamic stock availability
+* Quantity selection
+* Add to Cart
+* Shopping cart management
+* Order summary
+
+### ❤️ Wishlist
+
+* Add products to wishlist
+* Remove from wishlist
+* Wishlist badge in header
+
+### 🔍 Search & Filter
+
+* Search products by title
+* Filter products by category
+* Combined filtering and searching
+
+### 📄 Pagination
+
+* Client-side pagination
+* Automatic page reset on filter/search changes
+
+### 💱 Currency Conversion
+
+* Real-time currency conversion to INR
+* Discounted price calculation
+
+### 🔔 Notifications
+
+* Toast notifications using Sonner
+* Success and information messages
+
+### ⚡ Performance
+
+* Memoized product filtering
+* Skeleton loading UI
+* Derived state using `useMemo`
+* Reusable utility functions
+
+### 🎨 UI
+
+* Responsive layout
+* Modern card-based design
+* Loading skeletons
+* Empty states
+* Error handling
+* Dynamic page titles and favicon
+
+---
+
+# 🛠️ Tech Stack
+
+### Frontend
+
+* React 19
+* React Router DOM
+* Redux Toolkit
+* React Redux
+
+### Styling
+
+* Tailwind CSS
+* shadcn/ui
+* Lucide React
+
+### Utilities
+
+* React Helmet Async
+* React Hash Link
+
+### Build Tool
+
+* Vite
+
+### API
+
+* DummyJSON Products API
+* ExchangeRate API (Currency Conversion)
+
+---
+
+# 📁 Project Structure
+
+```text
+src
+├── assets
+├── components
+│   ├── Banner
+│   ├── Cart
+│   ├── Categories
+│   ├── Footer
+│   ├── Header
+│   ├── Home
+│   ├── Product
+│   ├── Wishlist
+│   ├── ui
+│   └── utilities
+├── hooks
+├── pages
+├── redux
+├── routes
+└── main.jsx
+```
+
+---
+
+# 🧠 Concepts Practiced
+
+* React Functional Components
+* React Hooks
+* Custom Hooks
+* React Router
+* Redux Toolkit
+* Redux Middleware
+* Derived State
+* Component Composition
+* Memoization with `useMemo`
+* API Integration
+* Local Storage Persistence
+* Responsive Design
+* Utility Functions
+* Error Handling
+* Loading Skeletons
+
+---
+
+# 📌 Future Improvements
+
+* Product sorting
+* User authentication
+* Checkout flow
+* Payment integration
+* Product reviews
+* Dark mode
+* Product recommendations
+
+---
+
+# 👨‍💻 Author
+
+**Kshitij Udhan**
+
+GitHub: https://github.com/kshitijudhan
+
+LinkedIn: https://linkedin.com/in/kshitij-udhan
+
+---
+
+# 📄 License
+
+This project is created for learning and portfolio purposes.
