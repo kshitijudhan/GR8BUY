@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import WhatWeSell from "@/components/WhatWeSell";
 import { PaginationIndex } from "@/components/PaginationIndex";
 import ProductNotFound from "@/components/ProductNotFound";
+import { Helmet } from "react-helmet-async";
+import houseIcon from "@/assets/house.svg";
 
 const PRODUCTS_PER_PAGE = 16;
 
@@ -79,36 +81,42 @@ function Home() {
   }, [searchitem, selectedcategories]);
 
   return (
-    <div>
-      <Header setSearchitem={setSearchitem} />
-      <Categories setSelectedcategories={setSelectedcategories} />
-      <Banner products={filteredProducts} />
-      <WhatWeSell />
-      <main style={{ marginTop: "10px", padding: "10px" }}>
-        {iserror ? (
-          <div>There is something wrong try again</div>
-        ) : isloading ? (
-          <ProductGridSkeleton />
-        ) : visibleProducts.length <= 0 ? (
-          <ProductNotFound
-            setSearchitem={setSearchitem}
-            setSelectedcategories={setSelectedcategories}
-          />
-        ) : (
-          <>
-            <ProductGrid visibleProducts={visibleProducts} />
-            {totalPages > 1 && (
-              <PaginationIndex
-                totalPages={totalPages}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
-            )}
-          </>
-        )}
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <title>GR8 BUY</title>
+        <link rel="icon" href={houseIcon} />
+      </Helmet>
+      <div>
+        <Header setSearchitem={setSearchitem} />
+        <Categories setSelectedcategories={setSelectedcategories} />
+        <Banner products={filteredProducts} />
+        <WhatWeSell />
+        <main style={{ marginTop: "10px", padding: "10px" }}>
+          {iserror ? (
+            <div>There is something wrong try again</div>
+          ) : isloading ? (
+            <ProductGridSkeleton />
+          ) : visibleProducts.length <= 0 ? (
+            <ProductNotFound
+              setSearchitem={setSearchitem}
+              setSelectedcategories={setSelectedcategories}
+            />
+          ) : (
+            <>
+              <ProductGrid visibleProducts={visibleProducts} />
+              {totalPages > 1 && (
+                <PaginationIndex
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              )}
+            </>
+          )}
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 

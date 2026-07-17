@@ -1,8 +1,8 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { HashLink } from "react-router-hash-link";
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
           <div>
-            <h2 className="text-2xl font-bold">ShopVerse</h2>
+            <h2 className="text-2xl font-bold">GR8 BUY</h2>
 
             <p className="mt-4 text-sm leading-6 text-muted-foreground">
               Your one-stop destination for quality products across multiple
@@ -32,19 +32,17 @@ export default function Footer() {
               </li>
 
               <li>
-                <a
-                  href="/products"
+                <HashLink
+                  smooth
+                  to="/#products"
                   className="transition-colors hover:text-foreground"
                 >
                   Products
-                </a>
+                </HashLink>
               </li>
 
               <li>
-                <a
-                  href="/categories"
-                  className="transition-colors hover:text-foreground"
-                >
+                <a href="/" className="transition-colors hover:text-foreground">
                   Categories
                 </a>
               </li>
@@ -76,12 +74,12 @@ export default function Footer() {
             <div className="mt-4 space-y-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4" />
-                <span>+91 98765 43210</span>
+                <span>+91 93591 72752</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4" />
-                <span>support@shopverse.com</span>
+                <span>udhankshitij@gmail.com</span>
               </div>
 
               <div className="flex items-start gap-3">
@@ -115,7 +113,7 @@ export default function Footer() {
         <Separator className="my-10" />
 
         <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} ShopVerse. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GR8 BUY. All rights reserved.</p>
 
           <div className="flex gap-6">
             <a

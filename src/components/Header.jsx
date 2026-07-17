@@ -25,10 +25,10 @@ function Header({ setSearchitem }) {
             onClick={() => navigate("/")}
           >
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-black text-white font-bold">
-              S
+              G8
             </div>
 
-            <span className="text-lg font-semibold tracking-tight">ShopUI</span>
+            <span className="text-lg font-semibold tracking-tight">GR8BUY</span>
           </div>
 
           {/* Search */}
