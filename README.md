@@ -5,17 +5,22 @@ GR8BUY is a modern e-commerce web application built with **React**, **Redux Tool
 ---
 
 ## 🚀 Live Demo
+
 ```
-(https://gr8-buy.vercel.app/)
+https://gr8-buy.vercel.app/
 ```
 
 ---
 
 ## 📸 Screenshots
 
-| Home                            | Product Details                       |
+| Home                            | Product Grid                            |
+| ------------------------------- | --------------------------------------- |
+| ![Home](./screenshots/home.png) | ![ProductG](./screenshots/productg.png) |
+
+| Login                           | Product Details                       |
 | ------------------------------- | ------------------------------------- |
-| ![Home](./screenshots/home.png) | ![Product](./screenshots/product.png) |
+| ![Logi](./screenshots/logi.png) | ![Product](./screenshots/product.png) |
 
 | Cart                            | Wishlist                                |
 | ------------------------------- | --------------------------------------- |
@@ -27,56 +32,56 @@ GR8BUY is a modern e-commerce web application built with **React**, **Redux Tool
 
 ### 🛒 Shopping
 
-* Browse all products
-* Product detail page
-* Dynamic stock availability
-* Quantity selection
-* Add to Cart
-* Shopping cart management
-* Order summary
+- Browse all products
+- Product detail page
+- Dynamic stock availability
+- Quantity selection
+- Add to Cart
+- Shopping cart management
+- Order summary
 
 ### ❤️ Wishlist
 
-* Add products to wishlist
-* Remove from wishlist
-* Wishlist badge in header
+- Add products to wishlist
+- Remove from wishlist
+- Wishlist badge in header
 
 ### 🔍 Search & Filter
 
-* Search products by title
-* Filter products by category
-* Combined filtering and searching
+- Search products by title
+- Filter products by category
+- Combined filtering and searching
 
 ### 📄 Pagination
 
-* Client-side pagination
-* Automatic page reset on filter/search changes
+- Client-side pagination
+- Automatic page reset on filter/search changes
 
 ### 💱 Currency Conversion
 
-* Real-time currency conversion to INR
-* Discounted price calculation
+- Real-time currency conversion to INR
+- Discounted price calculation
 
 ### 🔔 Notifications
 
-* Toast notifications using Sonner
-* Success and information messages
+- Toast notifications using Sonner
+- Success and information messages
 
 ### ⚡ Performance
 
-* Memoized product filtering
-* Skeleton loading UI
-* Derived state using `useMemo`
-* Reusable utility functions
+- Memoized product filtering
+- Skeleton loading UI
+- Derived state using `useMemo`
+- Reusable utility functions
 
 ### 🎨 UI
 
-* Responsive layout
-* Modern card-based design
-* Loading skeletons
-* Empty states
-* Error handling
-* Dynamic page titles and favicon
+- Responsive layout
+- Modern card-based design
+- Loading skeletons
+- Empty states
+- Error handling
+- Dynamic page titles and favicon
 
 ---
 
@@ -84,30 +89,30 @@ GR8BUY is a modern e-commerce web application built with **React**, **Redux Tool
 
 ### Frontend
 
-* React 19
-* React Router DOM
-* Redux Toolkit
-* React Redux
+- React 19
+- React Router DOM
+- Redux Toolkit
+- React Redux
 
 ### Styling
 
-* Tailwind CSS
-* shadcn/ui
-* Lucide React
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
 
 ### Utilities
 
-* React Helmet Async
-* React Hash Link
+- React Helmet Async
+- React Hash Link
 
 ### Build Tool
 
-* Vite
+- Vite
 
 ### API
 
-* DummyJSON Products API
-* ExchangeRate API (Currency Conversion)
+- DummyJSON Products API
+- ExchangeRate API (Currency Conversion)
 
 ---
 
@@ -138,33 +143,33 @@ src
 
 # 🧠 Concepts Practiced
 
-* React Functional Components
-* React Hooks
-* Custom Hooks
-* React Router
-* Redux Toolkit
-* Redux Middleware
-* Derived State
-* Component Composition
-* Memoization with `useMemo`
-* API Integration
-* Local Storage Persistence
-* Responsive Design
-* Utility Functions
-* Error Handling
-* Loading Skeletons
+- React Functional Components
+- React Hooks
+- Custom Hooks
+- React Router
+- Redux Toolkit
+- Redux Middleware
+- Derived State
+- Component Composition
+- Memoization with `useMemo`
+- API Integration
+- Local Storage Persistence
+- Responsive Design
+- Utility Functions
+- Error Handling
+- Loading Skeletons
 
 ---
 
 # 📌 Future Improvements
 
-* Product sorting
-* User authentication
-* Checkout flow
-* Payment integration
-* Product reviews
-* Dark mode
-* Product recommendations
+- Product sorting
+- User authentication
+- Checkout flow
+- Payment integration
+- Product reviews
+- Dark mode
+- Product recommendations
 
 ---
 
