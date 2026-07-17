@@ -1,14 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
-import Banner from "@/components/Banner";
+import Banner from "@/components/Home/Banner";
 import Header from "../components/Header";
 import Footer from "@/components/Footer";
-import ProductGrid from "@/components/ProductGrid";
-import Categories from "@/components/Categories";
-import ProductGridSkeleton from "@/components/ProductGridSkeleton";
+import ProductGrid from "@/components/Home/ProductGrid";
+import Categories from "@/components/Home/Categories";
+import ProductGridSkeleton from "@/components/Home/ProductGridSkeleton";
 import { useSelector } from "react-redux";
-import WhatWeSell from "@/components/WhatWeSell";
-import { PaginationIndex } from "@/components/PaginationIndex";
-import ProductNotFound from "@/components/ProductNotFound";
+import WhatWeSell from "@/components/Home/WhatWeSell";
+import { PaginationIndex } from "@/components/Home/PaginationIndex";
+import ProductNotFound from "@/components/Home/ProductNotFound";
 import { Helmet } from "react-helmet-async";
 import houseIcon from "@/assets/house.svg";
 
