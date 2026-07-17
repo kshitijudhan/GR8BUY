@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import Banner from "@/components/Home/Banner";
-import Header from "../components/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/Home/ProductGrid";
 import Categories from "@/components/Home/Categories";
@@ -89,7 +89,7 @@ function Home() {
       <div>
         <Header setSearchitem={setSearchitem} />
         <Categories setSelectedcategories={setSelectedcategories} />
-        <Banner products={filteredProducts} />
+        <Banner products={products} />
         <WhatWeSell />
         <main style={{ marginTop: "10px", padding: "10px" }}>
           {iserror ? (

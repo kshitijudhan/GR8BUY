@@ -10,7 +10,7 @@ import useCurrencyinr from "@/hooks/useCurrencyinr";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/cartSlice";
 import { toast } from "sonner";
-import { getAvailableStock } from "../utilities/availableStock";
+import { getAvailableStock } from "../../utilities/availableStock";
 
 export default function ProductDetails({ product }) {
   const [isloading, setIsloading] = useState(false);

@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import ProductDetails from "@/components/ProductDetails";
+import ProductDetails from "@/components/Product/ProductDetails";
 import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

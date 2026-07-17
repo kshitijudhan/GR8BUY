@@ -9,7 +9,7 @@ import ProductCardSkeleton from "./ProductCardSkeleton";
 import { addToWishlist, removeFromwishlist } from "@/redux/wishlistSlice";
 import useCurrencyinr from "@/hooks/useCurrencyinr";
 import { toast } from "sonner";
-import { getAvailableStock } from "../utilities/availableStock";
+import { getAvailableStock } from "../../utilities/availableStock";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
