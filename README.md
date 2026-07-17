@@ -18,9 +18,9 @@ https://gr8-buy.vercel.app/
 | ------------------------------- | --------------------------------------- |
 | ![Home](./screenshots/home.png) | ![ProductG](./screenshots/productg.png) |
 
-| Login                           | Product Details                       |
-| ------------------------------- | ------------------------------------- |
-| ![Logi](./screenshots/logi.png) | ![Product](./screenshots/product.png) |
+| Login                             | Product Details                       |
+| --------------------------------- | ------------------------------------- |
+| ![Login](./screenshots/login.png) | ![Product](./screenshots/product.png) |
 
 | Cart                            | Wishlist                                |
 | ------------------------------- | --------------------------------------- |
