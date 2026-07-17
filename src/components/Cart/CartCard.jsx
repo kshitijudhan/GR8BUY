@@ -60,12 +60,15 @@ function CartCard({ item }) {
                 <Button
                   variant="ghost"
                   size="icon"
+                  disabled={item.quantity >= item.stock}
                   onClick={() => {
-                    if (item.stock <= 0) {
-                      toast.info("Item is out of stock", {
+                    if (item.quantity >= item.stock) {
+                      toast.error("Maximum stock reached", {
                         position: "top-center",
                       });
-                    } else dispatch(increaseQuantity(item.id));
+                    } else {
+                      dispatch(increaseQuantity(item.id));
+                    }
                   }}
                 >
                   <Plus size={16} />

@@ -18,7 +18,7 @@ export default function Banner({ products }) {
     <section className="relative overflow-hidden border-b">
       {/* Background */}
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:42px_42px]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[42px_42px]"
         style={{
           transform: `translateY(${scrollY * 0.12}px)`,
         }}
@@ -63,7 +63,7 @@ export default function Banner({ products }) {
 
           {/* RIGHT */}
 
-          <div className="relative hidden h-[500px] lg:block">
+          <div className="relative hidden h-125 lg:block">
             {products?.slice(97, 100).map((product, index) => {
               const positions = [
                 {

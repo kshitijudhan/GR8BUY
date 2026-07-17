@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import ProductGrid from "@/components/Home/ProductGrid";
 import Categories from "@/components/Home/Categories";
 import ProductGridSkeleton from "@/components/Home/ProductGridSkeleton";
-import { useSelector } from "react-redux";
 import WhatWeSell from "@/components/Home/WhatWeSell";
 import { PaginationIndex } from "@/components/Home/PaginationIndex";
 import ProductNotFound from "@/components/Home/ProductNotFound";
@@ -20,7 +19,6 @@ function Home() {
   const [selectedcategories, setSelectedcategories] = useState("");
   const [isloading, setIsLoading] = useState(true);
   const [iserror, setIsError] = useState(false);
-  const cart = useSelector((state) => state.cart.cartItems);
   const [currentPage, setCurrentPage] = useState(1);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = startIndex + PRODUCTS_PER_PAGE;
@@ -46,7 +44,6 @@ function Home() {
   const filteredProducts = useMemo(() => {
     if (!products.length) return [];
 
-    const cartMap = new Map(cart.map((item) => [item.id, item.quantity]));
     const searchLower = searchitem.trim().toLowerCase();
 
     return products
@@ -58,15 +55,8 @@ function Home() {
         (product) =>
           searchitem === "" ||
           product.title.toLowerCase().includes(searchLower),
-      )
-      .map((product) => {
-        const cartQuantity = cartMap.get(product.id) || 0;
-        return {
-          ...product,
-          stock: Math.max(0, product.stock - cartQuantity),
-        };
-      });
-  }, [products, cart, selectedcategories, searchitem]);
+      );
+  }, [products, selectedcategories, searchitem]);
 
   const visibleProducts = useMemo(
     () => filteredProducts.slice(startIndex, endIndex),
