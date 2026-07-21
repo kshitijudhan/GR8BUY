@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 export default function Banner({ products }) {
@@ -55,7 +54,7 @@ export default function Banner({ products }) {
             <div className="mt-10 flex gap-4">
               <HashLink smooth to="/#products">
                 <Button asChild size="lg">
-                  <Link to="/products">Shop Now</Link>
+                  Shop Now
                 </Button>
               </HashLink>
             </div>
