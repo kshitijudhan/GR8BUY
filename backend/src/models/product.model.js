@@ -122,7 +122,7 @@ const productSchema = new Schema(
     },
     weight: {
       type: Number,
-      trim,
+      trim: true,
     },
     dimensions: {
       type: dimensionsSchema,

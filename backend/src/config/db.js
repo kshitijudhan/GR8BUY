@@ -8,5 +8,6 @@ export const connectDB = async () => {
     console.log("Connected to DB for GR8BUY");
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
